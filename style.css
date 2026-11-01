@@ -1,0 +1,453 @@
+/* Magalona, Marco Dominic A.
+CMSC 12 - U-3L
+Exer 09: Café Order Form - Uses Basic CSS alongside Basic HTML to create a fully functional Café Order Form */
+
+/* #body controls the whole background */
+#body {
+    background:
+        /* color of the background */
+        linear-gradient(
+            rgba(241, 244, 231, 0.6),
+            rgba(241, 244, 231, 0.6)
+        ),
+        url('assets/overlay.png'); /* overlay of the background */
+
+    /* background settings */
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen;
+}
+
+/* h1 controls the text 'cafe order form' */
+h1 {
+    /* text settings */
+    font-family: 'Georgia';
+    text-align: center;
+    letter-spacing: -1px;
+    font-size: 2.5em; /* em is a unit of measurement that is relative to the font size */
+    color: #47563f;
+
+    margin: 40px; /* margin of the text */
+}
+
+/* controls the 4 fieldsets */
+fieldset {
+    /* sets the size of the fieldset*/
+    width: min(90%, 400px);
+    margin: auto;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1; /* stacking order */
+    
+    /* designs the fieldset */
+    border: 1px solid #a7b892;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* controls the text above the fieldset */
+legend {
+    /* text style */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+
+    /* style of the background of the text */
+    background-color: #6b7f5b;
+    border: 1px solid #a7b892;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+    /* padding and margins */
+    margin-left: 10px;
+    padding: 5px 20px;
+}
+
+/* controls the labels of the input boxes */
+label {
+    font-family: 'Arial', sans-serif;
+}
+
+/* controls the labels of the radio and checkboxes */
+.group-label {
+    /* padding and margins */
+    display: block;
+    padding-top: 5px;
+    margin-bottom: 5px;
+
+    font-family: 'Arial', sans-serif;
+}
+
+/* changes every textboxes and input except reset, submit, radio, and checkboxes */
+input[type='text'], input[type='number'], input[type='tel'], input[type='email'], input[type='date'], input[type='time'], textarea {
+    font-family: 'Arial', sans-serif;
+    
+    /* padding and margins */
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    
+    /* borders */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize:none; /* disables the resizing of the textarea */
+
+    transition-duration: 0.3s; /* transition duration for hover and focus effects */
+
+    /* affects the hover and focus property of the inputs/textarea */
+    /* when the element is hovered or focused, it will change its border color */
+    &:hover, &:focus {
+        border: 1px solid #47563f;
+    }
+
+    /* affects the placeholder property of the inputs/textarea */
+    &::placeholder {
+        font-family: 'Arial', sans-serif;
+        font-style: italic;
+        font-size: 0.9em;
+        color: #888888;
+    }
+}
+
+/* changes background color when disabled */
+textarea:disabled {
+    background-color: #dddddd;
+}
+
+/* affects reset and submit buttons */
+input[type='reset'], input[type='submit'] {
+    cursor: pointer; /* changes the cursor to a pointer when hovered over the button */
+
+    /* padding and margins */
+    padding: 5px 20px;
+    margin-bottom: 50px;
+
+    /* text styling */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    font-size: 1em;
+    color: #ffffff;
+
+    /* button styling */
+    background-color: #6b7f5b;
+    border: 1px solid #47563f;
+    border-radius: 50px;
+    box-shadow: 0 0 1px;
+
+    transition-duration: 0.3s;
+
+    /* affects the buttons when hovered */
+    &:hover {
+        background-color: #47563f;
+        border: 1px solid #313d2a;
+    }
+}
+
+/* custom radio design */
+.radio-option {
+    cursor: pointer; /* changes the cursor to a pointer when hovered over the radio option */
+
+    /* margins and paddings and alignments */
+    display: flex;
+    margin-bottom: 12px;
+    padding: 0;
+    gap: 10px;
+    align-items: center;
+
+    /* makes the original radio design invisible */
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* radio circle */
+
+    /* the '~' syntax refers to style the following element rather than the actual input */
+    /* in this case,  the new radio button design will be styled rather than the invisible input */
+    /* the input is only used for user interaction while the user sees the new design */
+    /* when hovered in label, it will change the color of the new radio button */
+    &:hover input ~ .radiobox {
+        background-color: #ccc;
+    }
+
+    /* when the input is checked, it will change the color of the new radio button */
+    input:checked ~ .radiobox {
+        background-color: #47563f;
+    }
+
+    /* :focus-visible is used to style the element when it is focused via keyboard navigation (tab + keys) rather than the mouse hover */
+    input:focus-visible ~ .radiobox {
+        outline: 2px solid #47563f;
+        outline-offset: 2px;
+    }
+
+    /* dot inside circle */
+
+    /* the '::after' is used to create the small dot inside the radio */
+    .radiobox::after {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+
+        transition-duration: 0.3s;
+    }
+
+    /* creates the animation of the small dot inside the radio */
+    input:checked ~ .radiobox::after {
+        transform: scale(1);
+    }
+}
+
+/* styles the outside radio circle */
+.radiobox {
+    /* sizing */
+    display: grid;
+    order: -1;
+    height: 20px;
+    width: 20px;
+    flex-shrink: 0; /* tells the element not to shrink */
+
+    /* padding and alignment */
+    place-items: center;
+    box-sizing: border-box;
+
+    /* design and styling */
+    background-color: #ffffff;
+    border: 1px solid #313d2a;
+    border-radius: 50%;
+
+    transition-duration: 0.3s;
+
+    /* creates the small dot animation */
+    &::after {
+        content: '';
+        transform: scale(0);
+    }
+}
+
+/* custom checkmark option */
+.check-option {
+    /* padding and alignment */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    transition-duration: 0.3s;
+
+    /* makes the original checkmark design invisible */
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* when hovered in label, it will change the color of the new checkbox */
+    &:hover input ~ .checkbox {
+        background-color: #ccc;
+    }
+
+    /* when the input is checked, it will change the color of the new checkbox */
+    input:checked ~ .checkbox {
+        background-color: #47563f;
+    }
+
+    /* creates the animation of the checkmark */
+    input:checked ~ .checkbox::after {
+        transform: rotate(45deg) scale(1);
+        transition-duration: 0.3s;
+    }
+
+    /* when the input is focused via keyboard navigation (tab and keys), it will show an outline */
+    input:focus-visible ~ .checkbox {
+        outline: 2px solid #47563f;
+        outline-offset: 2px;
+    }
+}
+
+/* styles the actual checkbox */
+.checkbox {
+    /* sizing and padding and alignment*/
+    order: -1;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+
+    /* design and styling */
+    background-color: #ffffff;
+    border: 1px solid #313d2a;
+    border-radius: 4px;
+
+    transition-duration: 0.3s;
+
+    /* creates the checkmark with a rotated L */
+    &::after {
+        /* content */
+        content: '';
+        width: 5px;
+        height: 10px;
+        margin-bottom: 2px;
+
+        /* design */
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg) scale(0);
+    }
+}
+
+/* controls the select tags */
+select {
+    font-family: 'Arial', sans-serif;
+
+    /* sizing and padding */
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+
+    /* styling */
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    accent-color: #47563f;
+    border-radius: 10px;
+
+    transition-duration: 0.3s;
+
+    /* when hovered */
+    &:hover {
+        border: 1px solid #47563f;
+    }
+
+    /* when focused */
+    &:focus {
+        border: 1px solid #47563f;
+    }
+}
+
+/* button styling */
+.button {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+/* mingkofi logo styling */
+.logo {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+
+    /* changes the size of the logo before its transformed */
+    img {
+        height: 300px;
+        width: 300px;
+    }
+}
+
+/* matcha latte */
+.image1 {
+    position: absolute;
+    transform: rotate(10deg);
+    z-index: 0;
+    left: 4vw; /* vw automatically scales depending on window size */
+    bottom: 4vw;
+    pointer-events: none;
+    animation: wiggle 6s ease-in-out infinite; /* calls keyframe wiggle animation for the image */
+
+    img {
+        height: auto;
+        width: 20vw;
+    }
+}
+
+/* coffee latte */
+.image2 {
+    position: absolute;
+    text-align: right;
+    transform: rotate(-10deg);
+    z-index: 0;
+    right: 4vw;
+    bottom: -24vw;
+    pointer-events: none;
+    animation: wiggle 7s ease-in-out infinite;
+    animation-delay: -2s; /* delays the animation of the image */
+
+    /* changes the size of the image before its transformed */
+    img {
+        height: auto;
+        width: 20vw;
+    }
+}
+
+/* cinnamon bun */
+.image3 {
+    position: absolute;
+    transform: rotate(-10deg);
+    z-index: 0;
+    left: 4vw;
+    bottom: -48vw;
+    pointer-events: none;
+    animation: wiggle 8s ease-in-out infinite;
+    animation-delay: -4s;
+
+    /* changes the size of the image before its transformed */
+    img {
+        height: auto;
+        width: 30vw;
+    }
+}
+
+/* creates a universal wiggle animation for the images */
+@keyframes wiggle {
+    0%, 100% { rotate: 0deg;    translate: 0 0; }
+    50%      { rotate: 1deg;    translate: 0 -3px; }
+}
+
+/* old styles */
+/* input[type='radio'] {
+    padding-bottom: 5px;
+    accent-color: #47563f;
+    cursor: pointer;
+} */
+
+/* input[type='checkbox'] {
+    padding-bottom: 5px;
+    accent-color: #47563f;
+    cursor: pointer;
+} */
+
+
+/* REFERENCES USED: */
+/* https://www.w3schools.com/howto/howto_css_custom_checkbox.asp - custom checkbox and radio button styles */
+/* https://www.w3schools.com/css/css_selectors.asp - #id, .class, element selectors */
+/* https://www.w3schools.com/css/css_attribute_selectors.asp - attribute selector input[type='radio'] and input[type='checkbox'] */
+/* https://www.w3schools.com/css/css_combinators.asp - '~' adjacent sibling combinator */
+/* https://www.w3schools.com/css/css_pseudo_classes.asp - pseudo-classes :hover, :focus, etc. */
+/* https://www.w3schools.com/cssref/sel_nesting.php - css style inside another style*/
+/* https://www.w3schools.com/css/css_boxmodel.asp - content, padding, border, and margin */
+/* https://www.w3schools.com/css/css_border.asp - border styles */
+/* https://www.w3schools.com/css/css3_flexbox.asp - display: flex, align-items, justify-content */
+/* https://www.w3schools.com/css/css_grid.asp - grid layout for radio buttons */
+/* https://www.w3schools.com/css/css_z-index.asp - to control the stacking order of elements (image under the fieldset)*/
+/* https://www.w3schools.com/cssref/css_units.php - px, vw, etc. */
+/* https://www.w3schools.com/css/css3_animations.asp - @keyframes, and to wiggle image */

@@ -1,0 +1,208 @@
+<!-- Magalona, Marco Dominic A. -->
+<!-- CMSC 12 - U-3L -->
+<!-- Exer 08: Café Order Form - Uses Basic HTML to create a properly formatted order form. The code is properly labeled and user input is stored. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cafe Order Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body id="body">
+    <div class='logo'>
+        <img src="assets/drip.png" alt="Logo">
+    </div>
+    <br><br><br><br><br><br>
+    <h1>cafe order form</h1>
+    <!-- Form -->
+    <form id='form' novalidate>
+        <!-- Customer Information Fieldset -->
+        <fieldset id="customer_info">
+            <legend>Customer Information:</legend>
+
+            <!-- Asks for Customer Name -->
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name"> <br>
+
+            <!-- Asks for Mobile Number -->
+            <label for="customer_num">Mobile Number:</label>
+            <input type="tel" id="customer_num" name="customer_num" placeholder="09XXXXXXXXX" pattern="09[0-9]{9}"> <br>
+            <!-- pattern uses '09[0-9]{9}' which states that the number must start with 09 and the following numbers from 0-9 must be 9 digits forward. When added, is equal to 11 -->
+
+            <!-- Asks for Email Address -->
+            <label for="customer_email">Email Address: </label>
+            <input type="email" id="customer_email" name="customer_email"> <br>
+        </fieldset>
+
+        <br>
+
+        <!-- Coffee Order Details Fieldset -->
+        <fieldset id="coffee_order">
+            <legend>Coffee Order Details:</legend>
+
+            <!-- Asks for Number of Drinks -->
+            <label for="num_of_drinks">Number of Drinks:</label>
+            <input type="number" id="num_of_drinks" name="num_of_drinks" min="1" max="10"> <br>
+            <!-- Number of Drinks must be between 1 and 10 only -->
+            
+            <!-- Asks for Drink Type -->
+            <label for="drink_type">Drink Type:</label>
+            <select id="drink_type" name="drink_type">
+                <option value="0" selected>Americano</option>
+                <option value="1">Latte</option>
+                <option value="2">Cappucino</option>
+                <option value="3">Mocha</option>
+                <option value="4">Caramel Macchiato</option>
+            </select>
+            <!-- Creates a dropdown of the 5 choices. Americano is selected by default. -->
+            <br><br>
+
+            <!-- Asks for Cup Size -->
+            <label class="group-label">Cup Size:</label>
+
+            <label class="radio-option">Tall
+                <input type="radio" id="tall" name="cup_size" value="5" checked>
+                <span class="radiobox"></span>
+            </label>
+
+            <label class="radio-option">Grande
+                <input type="radio" id="grande" name="cup_size" value="6">
+                <span class="radiobox"></span>
+            </label>
+
+            <label class="radio-option">Venti
+                <input type="radio" id="venti" name="cup_size" value="7">
+                <span class="radiobox"></span>
+            </label>
+            
+            <!-- Creates a 3 radio choice in which Tall is selected by default. -->
+
+            <!-- Asks for Drink Temperature -->
+            <label class="group-label">Drink Temperature:</label>
+
+            <label class="radio-option">Hot
+                <input type="radio" id="hot" name="drink_temp" value="8">
+                <span class="radiobox"></span>
+            </label>
+
+            <label class="radio-option">Iced
+                <input type="radio" id="iced" name="drink_temp" value="9" checked>
+                <span class="radiobox"></span>
+            </label>
+            
+            <!-- Creates 2 radio choices in which Iced selected by default. -->
+
+            <!-- Asks for Add-ons -->
+            <label class="group-label">Drink Add-ons:</label>
+
+            <label class="check-option">Extra Espresso Shot
+                <input type="checkbox" id="espresso_shot" name="drink_add_ons" value="10">
+                <span class="checkbox"></span>
+            </label>
+
+            <label class="check-option">Vanilla Syrup
+                <input type="checkbox" id="vanilla_syrup" name="drink_add_ons" value="11">
+                <span class="checkbox"></span>
+            </label>
+
+            <label class="check-option">Caramel Drizzle
+                <input type="checkbox" id="caramel_drizzle" name="drink_add_ons" value="12">
+                <span class="checkbox"></span>
+            </label>
+
+            <!-- Creates a checkbox of 3 add-ons. -->
+        </fieldset>
+
+        <div class="image1">
+            <img src="assets/canva-iced-green-matcha-latte-in.png" alt="Iced Green Matcha Latte">
+        </div>
+        <br>
+
+        <!-- Pastry Order Details -->
+        <fieldset id="pastry_order">
+            <legend>Pastry Order Details:</legend>
+
+            <!-- Asks for additional Pastries -->
+            <label class="group-label">Pastries</label>
+
+            <label class="check-option">Crossaint
+                <input type="checkbox" id="croissant" name="pastries" value="13">
+                <span class="checkbox"></span>
+            </label>
+            
+            <label class="check-option">Brownie
+                <input type="checkbox" id="brownie" name="pastries" value="14">
+                <span class="checkbox"></span>
+            </label>
+
+            <label class="check-option">Cinnamon Roll
+                <input type="checkbox" id="cinnamon_roll" name="pastries" value="15">
+                <span class="checkbox"></span>
+            </label>
+
+            <label class="check-option">Cookies
+                <input type="checkbox" id="cookies" name="pastries" value="16">
+                <span class="checkbox"></span>
+            </label>
+            <!-- Creates a checkbox of 4 add-on pastries -->
+        </fieldset>
+        
+        <br>
+
+        <!-- Pickup/Delivery Details -->
+        <fieldset id="pickup_delivery">
+            <legend>Pickup/Delivery Details:</legend>
+
+            <!-- Asks if the order is Pickup or Delivery -->
+            <label class="group-label">Order Type:</label>
+
+            <label class="radio-option">Pickup
+                <input type="radio" id="pickup" name="order_type" value="pickup" checked>
+                <span class="radiobox"></span>
+            </label>
+
+            <label class="radio-option">Delivery
+                <input type="radio" id="delivery" name="order_type" value="delivery">
+                <span class="radiobox"></span>
+            </label>
+            <!-- Creates 2 radio choices. -->
+
+            <!-- Asks for Address -->
+            <label for="address">Delivery Address:</label><br>
+            <textarea id="address" name="address" rows="4" cols="60" placeholder="Delivery Address location here..."></textarea><br>
+            
+            <!-- Asks for Order Date in Date format-->
+            <label for="order_date">Order Date:</label>
+            <input type="date" id="order_date" name="order_date"><br>
+
+            <!-- Asks for Order Time in Time format -->
+            <label for="order_time">Order Time:</label>
+            <input type="time" id="order_time" name="order_time">
+        </fieldset>
+
+        <div class="image2">
+            <img src="assets/canva-refreshing-iced-latte.png" alt="Iced Latte">
+        </div>
+        <br>
+
+        <!-- Button -->
+        <div class="button">
+            <input type="reset" value="Reset" id="reset_button">
+            <input type="submit" value="Submit Order" id="submit_button">
+        </div>
+        <!-- Reset button resets the form while Submit button submits the form -->
+    </form>
+
+    <div class="image3">
+        <img src="assets/canva-cinnamon-roll.png" alt="cinnamon roll">
+    </div>
+    <br>
+
+    <audio autoplay loop>
+    <source src="assets/illit.mp3" type="audio/mpeg">
+    </audio>
+    <!-- plays the audio file in a loop -->
+
+<script src="functionality.js"></script> <!-- javascript integration -->
+</body>
+</html>
